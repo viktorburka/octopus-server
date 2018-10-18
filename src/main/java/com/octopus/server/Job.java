@@ -11,10 +11,12 @@ public class Job {
 
     public String description;
     public String status;
-    public String src_url;
-    public String dst_url;
+    public String srcUrl;
+    public String dstUrl;
 
     public Job(String id) {
         this.id = id;
     }
+
+    public Job() {}
 }
