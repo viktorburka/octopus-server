@@ -43,29 +43,29 @@ public class ServerApplicationTests {
     private ObjectMapper mapper;
 
     @InjectMocks
-	private JobsController controller;
+    private JobsController controller;
 
     @MockBean
     private JobsRepository repository;
 
-	@Test
-	public void contextLoads() {
-		assertThat(controller).isNotNull();
-	}
+    @Test
+    public void contextLoads() {
+        assertThat(controller).isNotNull();
+    }
 
     @Test
     public void testNoJobs() throws Exception {
 
         when(repository.findAll()).thenReturn(new ArrayList<>());
 
-	    this.mock.perform(get("/jobs")).andExpect(status().isOk())
+        this.mock.perform(get("/jobs")).andExpect(status().isOk())
                  .andExpect(content().string(containsString("[]")));
     }
 
     @Test
     public void createJobSameDstNotQueued() throws Exception {
 
-	    CreateJobRequest request = new CreateJobRequest();
+        CreateJobRequest request = new CreateJobRequest();
         request.srcUrl = "http://test.com/file.txt";
         request.dstUrl = "http://test-dst.com/file1.txt";
         request.description = "Test job";
